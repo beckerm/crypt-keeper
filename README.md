@@ -1,5 +1,5 @@
 # crypt_keeper
-Make encrytion key:
+Make encryption key:
 ```
 ./crypty.py -m my_key.key
 ```
