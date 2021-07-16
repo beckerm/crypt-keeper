@@ -24,34 +24,59 @@ def create_key(n):
 
 
 def encrypt_file(f, k):
-    with open(k, 'rb') as filekey:
-        key = filekey.read()
+
+    try:
+        with open(k, 'rb') as filekey:
+            key = filekey.read()
+    except Exception as e:
+        print(str(e))
+        exit(1)
 
     fernet = Fernet(key)
 
-    with open(f, 'rb') as file:
-        original = file.read()
+    try:
+        with open(f, 'rb') as file:
+            original = file.read()
+    except Exception as e:
+        print(str(e))
+        exit(1)
 
     encrypted = fernet.encrypt(original)
 
-    with open(f, 'wb') as encrypted_file:
-        encrypted_file.write(encrypted)
+    try:
+        with open(f, 'wb') as encrypted_file:
+            encrypted_file.write(encrypted)
+    except Exception as e:
+        print(str(e))
+        exit(1)
 
 
 def decrypt_file(f, k):
 
-    with open(k, 'rb') as filekey:
-        key = filekey.read()
+    try:
+        with open(k, 'rb') as filekey:
+            key = filekey.read()
+    except Exception as e:
+        print(str(e))
+        exit(1)
 
     fernet = Fernet(key)
 
-    with open(f, 'rb') as enc_file:
-        encrypted = enc_file.read()
+    try:
+        with open(f, 'rb') as encrypted_file:
+            encrypted = encrypted_file.read()
+    except Exception as e:
+        print(str(e))
+        exit(1)
 
     decrypted = fernet.decrypt(encrypted)
 
-    with open(f, 'wb') as dec_file:
-        dec_file.write(decrypted)
+    try:
+        with open(f, 'wb') as decrypted_file:
+            decrypted_file.write(decrypted)
+    except Exception as e:
+        print(str(e))
+        exit(1)
 
 
 if args.makekey:
