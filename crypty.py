@@ -81,12 +81,9 @@ def decrypt_file(f, k):
 
 if args.makekey:
     create_key(args.makekey)
-    exit(1)
-
-if args.encrypt and args.key:
+elif args.encrypt and args.key:
     encrypt_file(args.encrypt, args.key)
-    exit(1)
-
-if args.decrypt and args.key:
+elif args.decrypt and args.key:
     decrypt_file(args.decrypt, args.key)
+else:
     exit(1)
