@@ -29,8 +29,8 @@ def encrypt_file(f, k):
         with open(k, 'rb') as filekey:
             key = filekey.read()
     except Exception as e:
-        print(str(e))
-        exit(1)
+        print(f"Error: {e}")
+        exit()
 
     fernet = Fernet(key)
 
@@ -38,8 +38,8 @@ def encrypt_file(f, k):
         with open(f, 'rb') as file:
             original = file.read()
     except Exception as e:
-        print(str(e))
-        exit(1)
+        print(f"Error: {e}")
+        exit()
 
     encrypted = fernet.encrypt(original)
 
@@ -47,8 +47,8 @@ def encrypt_file(f, k):
         with open(f, 'wb') as encrypted_file:
             encrypted_file.write(encrypted)
     except Exception as e:
-        print(str(e))
-        exit(1)
+        print(f"Error: {e}")
+        exit()
 
 
 def decrypt_file(f, k):
@@ -57,8 +57,8 @@ def decrypt_file(f, k):
         with open(k, 'rb') as filekey:
             key = filekey.read()
     except Exception as e:
-        print(str(e))
-        exit(1)
+        print(f"Error: {e}")
+        exit()
 
     fernet = Fernet(key)
 
@@ -66,8 +66,8 @@ def decrypt_file(f, k):
         with open(f, 'rb') as encrypted_file:
             encrypted = encrypted_file.read()
     except Exception as e:
-        print(str(e))
-        exit(1)
+        print(f"Error: {e}")
+        exit()
 
     decrypted = fernet.decrypt(encrypted)
 
@@ -75,8 +75,8 @@ def decrypt_file(f, k):
         with open(f, 'wb') as decrypted_file:
             decrypted_file.write(decrypted)
     except Exception as e:
-        print(str(e))
-        exit(1)
+        print(f"Error: {e}")
+        exit()
 
 
 if args.makekey:
@@ -86,4 +86,4 @@ elif args.encrypt and args.key:
 elif args.decrypt and args.key:
     decrypt_file(args.decrypt, args.key)
 else:
-    exit(1)
+    exit()
